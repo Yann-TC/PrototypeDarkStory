@@ -221,13 +221,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62015349}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 969d1a21785114c42827d2b13118a705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AmountOfParallax: 0
-  MainCamera: {fileID: 519420031}
+  MainCamera: {fileID: 519420032}
   invertMovement: 0
 --- !u!212 &62015352
 SpriteRenderer:
@@ -970,7 +970,7 @@ Transform:
   - {fileID: 62015350}
   - {fileID: 342153428}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &248962253
 GameObject:
@@ -2352,13 +2352,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365522018}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 969d1a21785114c42827d2b13118a705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AmountOfParallax: 1
-  MainCamera: {fileID: 519420031}
+  MainCamera: {fileID: 519420032}
   invertMovement: 0
 --- !u!1 &497325728
 GameObject:
@@ -2468,12 +2468,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17000008, y: 0.01999998, z: -10}
+  m_LocalPosition: {x: 0, y: 1.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1950240268}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &542086537
 GameObject:
@@ -2515,7 +2515,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3435132141324580132, guid: 8ecc28afca779d14e9c3f2381e562c4d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3435132141324580132, guid: 8ecc28afca779d14e9c3f2381e562c4d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2561,6 +2561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3435132141324580133, guid: 8ecc28afca779d14e9c3f2381e562c4d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ecc28afca779d14e9c3f2381e562c4d, type: 3}
 --- !u!1001 &755604222
@@ -2574,9 +2578,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: DaggerMush
       objectReference: {fileID: 0}
+    - target: {fileID: 6534077254215590186, guid: a40147cf64530d44b897e09d5d904f9f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6534077254215590187, guid: a40147cf64530d44b897e09d5d904f9f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6534077254215590187, guid: a40147cf64530d44b897e09d5d904f9f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2651,7 +2659,7 @@ Transform:
   - {fileID: 1555303520}
   - {fileID: 1681065217}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &942884935
 GameObject:
@@ -2829,13 +2837,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976069486}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 969d1a21785114c42827d2b13118a705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AmountOfParallax: 0.2
-  MainCamera: {fileID: 519420031}
+  MainCamera: {fileID: 519420032}
   invertMovement: 0
 --- !u!212 &976069489
 SpriteRenderer:
@@ -2919,7 +2927,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &983739904
 MonoBehaviour:
@@ -3095,13 +3103,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455763958}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 969d1a21785114c42827d2b13118a705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AmountOfParallax: 0.4
-  MainCamera: {fileID: 519420031}
+  MainCamera: {fileID: 519420032}
   invertMovement: 0
 --- !u!212 &1455763961
 SpriteRenderer:
@@ -3420,13 +3428,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691732413}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 969d1a21785114c42827d2b13118a705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AmountOfParallax: 0.6
-  MainCamera: {fileID: 519420031}
+  MainCamera: {fileID: 519420032}
   invertMovement: 0
 --- !u!212 &1691732416
 SpriteRenderer:
@@ -6530,6 +6538,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &1950240268 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1764059838312927780, guid: 789ad9e539d154f2a9356ea0eb6aedff, type: 3}
+  m_PrefabInstance: {fileID: 2107231015}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1963030503
 GameObject:
   m_ObjectHideFlags: 0
@@ -6628,13 +6641,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968022461}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 969d1a21785114c42827d2b13118a705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AmountOfParallax: 0.8
-  MainCamera: {fileID: 519420031}
+  MainCamera: {fileID: 519420032}
   invertMovement: 0
 --- !u!212 &1968022464
 SpriteRenderer:
@@ -7927,7 +7940,7 @@ Transform:
   - {fileID: 1895872188}
   - {fileID: 162615870}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2107231015
 PrefabInstance:

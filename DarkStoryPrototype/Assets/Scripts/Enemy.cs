@@ -77,11 +77,11 @@ public class Enemy : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundMask);
 
-        if(rb.velocity.y < -15f && !isGrounded)
+        if(rb.linearVelocity.y < -15f && !isGrounded)
             damagesOnLand = maxHealth;
-        else if (rb.velocity.y < -10f && !isGrounded)
+        else if (rb.linearVelocity.y < -10f && !isGrounded)
             damagesOnLand = 2;
-        else if (rb.velocity.y < -5f && !isGrounded)
+        else if (rb.linearVelocity.y < -5f && !isGrounded)
             damagesOnLand = 1;
 
         if (isGrounded && damagesOnLand > 0)
@@ -95,12 +95,12 @@ public class Enemy : MonoBehaviour
             StartCoroutine(Die());
         }
 
-        rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -20, 20));    // Limit the max Y speed
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -20, 20));    // Limit the max Y speed
 
-        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+        anim.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));
 
         if (!isKnockbacking)
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
     }
 
     #endregion
@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour
         dead = true;
         gameObject.layer = LayerMask.NameToLayer("NoColPlayerEnemy");
 
-        rb.velocity = new Vector2(0f, rb.velocity.y);
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         yield return new WaitForSeconds(deathAnimTime);
 
         if(deathParticles != null)
@@ -167,7 +167,7 @@ public class Enemy : MonoBehaviour
     {
         if (isKnockbacking)
         {
-            rb.velocity = knockbackDirection * knockbackForce;
+            rb.linearVelocity = knockbackDirection * knockbackForce;
         }
     }
     private IEnumerator KnockbackTime()

@@ -115,7 +115,7 @@ namespace BehaviorDesigner.Runtime.Tasks
         private IEnumerator NormalAttack()
         {
             hasHitPlayer = false;
-            rb.velocity = new UnityEngine.Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new UnityEngine.Vector2(0f, rb.linearVelocity.y);
             anim.SetTrigger("Attack");
             
             yield return new WaitForSeconds(0.25f / 0.6f);
@@ -140,7 +140,7 @@ namespace BehaviorDesigner.Runtime.Tasks
         {
             hasHitPlayer = false;
 
-            rb.velocity = new UnityEngine.Vector2(0f, rb.velocity.y); 
+            rb.linearVelocity = new UnityEngine.Vector2(0f, rb.linearVelocity.y); 
             anim.SetTrigger("AttackCombo");
 
             yield return new WaitForSeconds(0.11f / 0.6f);
@@ -191,7 +191,7 @@ namespace BehaviorDesigner.Runtime.Tasks
         {
             hasHitPlayer = false;
 
-            rb.velocity = new UnityEngine.Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new UnityEngine.Vector2(0f, rb.linearVelocity.y);
             anim.SetTrigger("AirAttack");
 
             yield return new WaitForSeconds(0.14f / 0.6f);

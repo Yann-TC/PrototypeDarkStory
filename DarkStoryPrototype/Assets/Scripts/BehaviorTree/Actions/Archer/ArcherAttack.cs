@@ -100,7 +100,7 @@ namespace BehaviorDesigner.Runtime.Tasks
         private IEnumerator NormalAttack()
         {
             hasHitPlayer = false;
-            rb.velocity = new UnityEngine.Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new UnityEngine.Vector2(0f, rb.linearVelocity.y);
             anim.SetTrigger("Attack");
             sr.gameObject.transform.localPosition = new UnityEngine.Vector3(sr.gameObject.transform.localPosition.x + 0.4f, sr.gameObject.transform.localPosition.y, sr.gameObject.transform.localPosition.z);
             
@@ -124,7 +124,7 @@ namespace BehaviorDesigner.Runtime.Tasks
         {
             hasHitPlayer = false;
 
-            rb.velocity = new UnityEngine.Vector2(0f, rb.velocity.y); // vanish
+            rb.linearVelocity = new UnityEngine.Vector2(0f, rb.linearVelocity.y); // vanish
             anim.SetTrigger("SpecialAttackVanish");
 
             yield return new WaitForSeconds(0.18f / 0.6f);

@@ -94,20 +94,20 @@ namespace BehaviorDesigner.Runtime.Tasks
             if (!GetComponent<Enemy>().isKnockbacking)
             {
                 if(!shouldChasePlayer)
-                    rb.velocity = new UnityEngine.Vector2(moveSpeed * direction, rb.velocity.y);     // move to target
+                    rb.linearVelocity = new UnityEngine.Vector2(moveSpeed * direction, rb.linearVelocity.y);     // move to target
                 else if (currentTargetedPoint.x - transform.position.x > playerDeadZone || currentTargetedPoint.x - transform.position.x < -playerDeadZone)
-                    rb.velocity = new UnityEngine.Vector2(moveSpeed * direction, rb.velocity.y);     // move to target but leave a dead zone
+                    rb.linearVelocity = new UnityEngine.Vector2(moveSpeed * direction, rb.linearVelocity.y);     // move to target but leave a dead zone
             }
 
             // Turn
-            if (rb.velocity.x > 0.1f && !GetComponent<Enemy>().isKnockbacking)
+            if (rb.linearVelocity.x > 0.1f && !GetComponent<Enemy>().isKnockbacking)
             {
                 if(!shouldChasePlayer)
                     transform.localScale = new UnityEngine.Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
                 else if(currentTargetedPoint.x - transform.position.x > 0.3f || currentTargetedPoint.x - transform.position.x < -0.3f)
                     transform.localScale = new UnityEngine.Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             }
-            else if (rb.velocity.x < -0.1f && !GetComponent<Enemy>().isKnockbacking)
+            else if (rb.linearVelocity.x < -0.1f && !GetComponent<Enemy>().isKnockbacking)
             {
                 if (!shouldChasePlayer)
                     transform.localScale = new UnityEngine.Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);

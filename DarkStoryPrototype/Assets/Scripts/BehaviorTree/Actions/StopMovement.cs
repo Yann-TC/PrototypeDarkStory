@@ -14,7 +14,7 @@ namespace BehaviorDesigner.Runtime.Tasks
 
         public override TaskStatus OnUpdate()
         {
-            GetComponent<Rigidbody2D>().velocity = new UnityEngine.Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
+            GetComponent<Rigidbody2D>().linearVelocity = new UnityEngine.Vector2(0, GetComponent<Rigidbody2D>().linearVelocity.y);
             return TaskStatus.Success;
         }
 

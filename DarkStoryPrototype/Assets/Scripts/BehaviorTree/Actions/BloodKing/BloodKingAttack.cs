@@ -111,7 +111,7 @@ namespace BehaviorDesigner.Runtime.Tasks
         {
             hasHitPlayer = false;
 
-            rb.velocity = new UnityEngine.Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new UnityEngine.Vector2(0f, rb.linearVelocity.y);
             anim.SetTrigger("DoubleSlash");
 
             // Modify sprite pos

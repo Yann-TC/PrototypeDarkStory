@@ -3,7 +3,6 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using Unity.Burst.Intrinsics;
-using UnityEditor.U2D.Path.GUIFramework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -204,7 +203,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            rb.velocity = Vector2.zero;     // Stop movement if cannot move
+            rb.linearVelocity = Vector2.zero;     // Stop movement if cannot move
         }
         Checks();   // The important checks that have to be done every frame
 
@@ -250,11 +249,11 @@ public class PlayerController : MonoBehaviour
             roomEntered.gameObject.transform.GetChild(0).gameObject.transform.GetChild(roomEntered.gameObject.transform.GetChild(0).gameObject.transform.childCount - 1).gameObject.GetComponent<Tilemap>().color = new Color(0.5f, 0.5f, 0.5f, 1);
         }
 
-        rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -20, 20));    // Limit the max Y speed
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -20, 20));    // Limit the max Y speed
         anim = GetComponentInChildren<Animator>();
 
         // Set the parameters of the animator
-        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));   
+        anim.SetFloat("Speed", Mathf.Abs(rb.linearVelocity.x));   
         anim.SetBool("Grounded", isGrounded);
 
         anim.SetBool("Falling", isFalling);
@@ -291,9 +290,9 @@ public class PlayerController : MonoBehaviour
     private void Checks()
     {
         isGrounded = Physics2D.OverlapBox(groundPos.position, new Vector2(0.4f, 0.25f), 0f, groundMask);
-        isFalling = (rb.velocity.y < 0 && !isGrounded) && (!Physics2D.OverlapBox(fallingAnimErrorPos.position, fallingAnimErrorSize, 0, groundMask) || rb.velocity.y < -15f);
+        isFalling = (rb.linearVelocity.y < 0 && !isGrounded) && (!Physics2D.OverlapBox(fallingAnimErrorPos.position, fallingAnimErrorSize, 0, groundMask) || rb.linearVelocity.y < -15f);
 
-        if (isFalling && rb.velocity.y < -19f)
+        if (isFalling && rb.linearVelocity.y < -19f)
             shouldPlayLandEffect = true;
 
         if (isGrounded)
@@ -313,7 +312,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             jumpCoyoteTimer -= Time.deltaTime; 
-            inDashCooldown = false; // as whe only have one dash in air we don't need to have a cooldown 
+            inDashCooldown = false; // as we only have one dash in air we don't need to have a cooldown 
         }
 
         // Set the pogo slash effect's position
@@ -341,16 +340,16 @@ public class PlayerController : MonoBehaviour
         if (!isDashing && !wallJumping && !isParrying && !isKnockbacking)
         {
             if(inputDirection.x != 0f)
-                rb.velocity = new Vector2((inputDirection.x / Mathf.Abs(inputDirection.x)) * moveSpeed, rb.velocity.y);
+                rb.linearVelocity = new Vector2((inputDirection.x / Mathf.Abs(inputDirection.x)) * moveSpeed, rb.linearVelocity.y);
             else
-                rb.velocity = new Vector2(0f, rb.velocity.y);
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
 
-        if(rb.velocity.x < -0.1f && !isAttacking && !isInPogo && !isKnockbacking && !isParrying)
+        if(rb.linearVelocity.x < -0.1f && !isAttacking && !isInPogo && !isKnockbacking && !isParrying)
         {
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
-        else if(rb.velocity.x > 0.1f && !isAttacking && !isInPogo && !isKnockbacking && !isParrying)
+        else if(rb.linearVelocity.x > 0.1f && !isAttacking && !isInPogo && !isKnockbacking && !isParrying)
         {
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
@@ -366,7 +365,7 @@ public class PlayerController : MonoBehaviour
         if (isJumping && controls.Player.Jump.WasReleasedThisFrame())
         {
             isJumping = false;
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y / 3f);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y / 3f);
         }
 
         if (controls.Player.Jump.WasPressedThisFrame() && isFalling && !isWalled)
@@ -391,7 +390,7 @@ public class PlayerController : MonoBehaviour
             if (canJump && (controls.Player.Jump.WasPressedThisFrame() || jumpBufferingTimer > 0))
             {
                 jumpBufferingTimer = 0;
-                rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHeight);
                 isJumping = true;
             }
         }
@@ -404,7 +403,7 @@ public class PlayerController : MonoBehaviour
         {
             float newPos = Vector3.Distance(new Vector3(hit.point.x, transform.position.y, 0f) + Vector3.up * topRaycastLength, transform.position - edgeRaycast0ffset + Vector3.up * topRaycastLength);
             transform.position = new Vector3(transform.position.x + newPos, transform.position.y, transform.position.z);
-            rb.velocity = new Vector2(rb.velocity.x, yVelocity);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, yVelocity);
             return;
         }
 
@@ -414,7 +413,7 @@ public class PlayerController : MonoBehaviour
         {
             float newPos = Vector3.Distance(new Vector3(hit.point.x, transform.position.y, 0f) + Vector3.up * topRaycastLength, transform.position + edgeRaycast0ffset + Vector3.up * topRaycastLength);
             transform.position = new Vector3(transform.position.x - newPos, transform.position.y, transform.position.z);
-            rb.velocity = new Vector2(rb.velocity.x, yVelocity);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, yVelocity);
             return;
         }
     }
@@ -456,7 +455,7 @@ public class PlayerController : MonoBehaviour
         // Apply dash force
         if (isDashing)
         {
-            rb.velocity = new Vector2(transform.localScale.x * moveSpeed * dashSpeedMultiplier, 0);
+            rb.linearVelocity = new Vector2(transform.localScale.x * moveSpeed * dashSpeedMultiplier, 0);
         }
     }
     private IEnumerator DashCooldown()
@@ -678,7 +677,7 @@ public class PlayerController : MonoBehaviour
     private void Pogo()
     {
         if (isInPogo)
-            rb.velocity = new Vector2(rb.velocity.x, pogoHeight);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, pogoHeight);
     }
     private IEnumerator PogoTime()
     {
@@ -725,7 +724,7 @@ public class PlayerController : MonoBehaviour
         if (isOnLedge)
         {
             isWalled = false;
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             rb.gravityScale = 0f;
             ledgeSprite.SetActive(true);
             defaultSprite.SetActive(false);
@@ -782,7 +781,7 @@ public class PlayerController : MonoBehaviour
 
         if (isWalled)
         {
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -2, 20));
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -2, 20));
             wallJumpDelayTimer = wallJumpDelayTime;
             canDash = true;
             shouldPlayLandEffect = false;
@@ -790,12 +789,12 @@ public class PlayerController : MonoBehaviour
 
         if(wallJumping && !controls.Player.Jump.IsPressed())
         {
-            rb.velocity = new Vector2(wallJumpForce * transform.localScale.x, rb.velocity.y / 2);
+            rb.linearVelocity = new Vector2(wallJumpForce * transform.localScale.x, rb.linearVelocity.y / 2);
             wallJumping = false;
         }
         else if (wallJumping)
         {
-            rb.velocity = new Vector2(wallJumpForce * transform.localScale.x, wallJumpForce * 1.5f);
+            rb.linearVelocity = new Vector2(wallJumpForce * transform.localScale.x, wallJumpForce * 1.5f);
         }
     }
     private IEnumerator WallJump(bool shouldFlip = false)
@@ -821,7 +820,7 @@ public class PlayerController : MonoBehaviour
 
         if (isParrying)
         {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
          
         if((isOnLedge || isLedgeClimbing))
@@ -849,7 +848,7 @@ public class PlayerController : MonoBehaviour
         anim.SetTrigger("SuccessfullParry");
         isParrying = true;
         inParryCooldown = false;
-        rb.velocity = new Vector2(0f, rb.velocity.y);
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         Time.timeScale = 0.5f;
 
         yield return new WaitForSeconds((0.15f / 0.6f) / 2);
@@ -873,7 +872,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isKnockbacking)
         {
-            rb.velocity = knockbackDirection * knockbackForce;
+            rb.linearVelocity = knockbackDirection * knockbackForce;
         }
     }
     private IEnumerator KnockbackTime(bool playerHit)
